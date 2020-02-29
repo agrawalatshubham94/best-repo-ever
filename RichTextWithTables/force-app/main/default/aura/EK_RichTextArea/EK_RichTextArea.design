@@ -1,0 +1,5 @@
+<design:component>
+    <design:attribute name="mappedField" label="Map Text Area(Long) Field" datasource="apex://RichTextAreaHelper" 
+                      description="Field mapped to this Rich Text content. Field should be Text Area(Long) with character length greater than 255" />
+    <design:attribute name="title" label="Mapped field label" description="Mapped field label"/>
+</design:component>

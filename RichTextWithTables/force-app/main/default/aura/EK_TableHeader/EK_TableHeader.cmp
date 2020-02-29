@@ -1,0 +1,34 @@
+<!-- 
+****************************************************************************************************** 
+* Name               : EK_TableHeader                                                                              
+* Author SFDC        : Shubham Agrawal                                                 
+* Version            : 1.0                                                                                                                  
+* Function           : Component to give table column headers.
+****************************************************************************************************** 
+* Change History    AUTHOR            	DATE                            Description                          
+* CH00              Shubham Agrawal     15-Dec-2019                  	created the Component
+****************************************************************************************************** 
+-->
+<aura:component implements="force:appHostable,lightning:availableForFlowScreens" access="global">
+    <aura:attribute name="rows" type="Integer" />
+    <aura:attribute name="columns" type="Integer"/>
+    <aura:attribute name="columnHeaders" type="String[]" />
+    <aura:attribute name="message" type="String" />
+    
+    <aura:handler name="init" value="{! this }" action="{!c.init}"/>
+    
+    <lightning:card class="padding_none header_none">   
+        <p>Please provide column headers</p>
+    	{!v.body}
+        <aura:if isTrue="{!v.message.length > 0}">
+            <div class="error-color">
+                {!v.message}
+            </div> 
+        </aura:if>               
+        <aura:set attribute="footer">
+            <lightning:button label="Previous" onclick="{!c.handleOnBack}" class="slds-float_left"/>
+            <lightning:button label="Next" class="slds-float_right" variant="brand" onclick="{!c.handleOnNext}"/>
+        </aura:set>
+    </lightning:card>      
+	
+</aura:component>

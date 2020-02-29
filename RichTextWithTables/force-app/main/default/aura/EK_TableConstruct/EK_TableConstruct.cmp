@@ -1,0 +1,15 @@
+<!-- 
+****************************************************************************************************** 
+* Name               : EK_TableConstruct                                                                               
+* Author SFDC        : Shubham Agrawal                                                 
+* Version            : 1.0                                                                                                                  
+* Function           : Component to call flow on click of add table from EK_RichTextArea component.
+****************************************************************************************************** 
+* Change History    AUTHOR            	DATE                            Description                          
+* CH00              Shubham Agrawal     15-Dec-2019                  	created the Component
+****************************************************************************************************** 
+-->
+<aura:component access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />   
+    <lightning:flow aura:id="flowData" />	
+</aura:component>

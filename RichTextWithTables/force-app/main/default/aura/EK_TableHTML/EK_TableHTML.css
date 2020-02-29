@@ -1,0 +1,10 @@
+.THIS.header_none .slds-card__header {
+    display: none;
+}
+.THIS.padding_none .slds-card__footer {
+    padding-left:0;
+    padding-right:0;
+}
+.THIS.width_full textarea {
+    width:100%;
+}

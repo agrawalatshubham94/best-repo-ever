@@ -1,0 +1,10 @@
+.THIS.header_none .slds-card__header {
+    display: none;
+}
+.THIS.padding_none .slds-card__footer {
+    padding-left:0;
+    padding-right:0;
+}
+.THIS .error-color {
+    color: rgb(194, 57, 52);
+}

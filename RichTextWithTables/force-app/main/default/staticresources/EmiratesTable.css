@@ -1,0 +1,68 @@
+/* Latest version */
+
+.emirates_table table{
+    width: 100% !important;
+	color:#333;
+	text-align: left;
+	word-break: break-all;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: transparent;
+}
+
+.emirates_table thead{
+    background-color: rgba(102,102,102,.1);
+	border: 1px solid rgba(102,102,102,.2);
+}
+
+.emirates_table th{
+    padding: 20px !important;
+	font-family: HelveticaNeue-Bold,'Helvetica Bold','Arial Black',sans-serif;
+}
+
+.emirates_table tr {
+	border: 1px solid rgba(102,102,102,.2);
+}
+
+.emirates_table tr:nth-child(even) {
+	background-color: rgba(102,102,102,.1);
+	border: 1px solid rgba(102,102,102,.2);
+}
+
+.emirates_table td {
+	padding: 20px !important;
+	/*min-width: 20vh;*/
+	font-family: HelveticaNeue-Light,Helvetica,Arial,sans-serif;
+	font-size: 14px;
+}
+
+@media (min-width: 481px) {
+	.emirates_table div {
+		overflow-x: auto;
+	}
+}
+
+@media (max-width: 480px) {
+	.emirates_table thead {
+		display:none;
+	}
+	
+	.emirates_table td {
+    	display: block;
+    	position: relative;
+	}
+	
+	.emirates_table td:last-child {
+    	padding-bottom: 20px;
+	}
+	
+	.emirates_table td:before {
+		content: attr(data-label);
+		display:block;
+		top: 0;
+		left: 0;
+		width: 100%;
+		font-weight: 700;
+		text-align: left;
+	}
+}

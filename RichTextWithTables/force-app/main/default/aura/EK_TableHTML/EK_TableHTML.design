@@ -1,0 +1,5 @@
+<design:component>
+    <design:attribute name="columnHeaders" label="Headers" />
+    <design:attribute name="rows" label="No. of rows" />
+    <design:attribute name="columns" label="No. of columns" />	
+</design:component>

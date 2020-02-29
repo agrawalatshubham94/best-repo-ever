@@ -1,0 +1,15 @@
+.THIS .text-align_right{
+    text-align:right;
+}
+.THIS table{
+    width: 100%!important;
+}
+.THIS table {
+    border: 0.5px solid black!important;
+}
+.THIS td {
+    border: 0.5px solid black!important;
+}
+.THIS th {
+    border: 0.5px solid black!important;
+}

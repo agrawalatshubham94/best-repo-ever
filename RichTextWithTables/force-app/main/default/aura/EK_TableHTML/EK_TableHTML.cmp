@@ -1,0 +1,33 @@
+<!-- 
+****************************************************************************************************** 
+* Name               : EK_TableHTML                                                                              
+* Author SFDC        : Shubham Agrawal                                                 
+* Version            : 1.0                                                                                                                  
+* Function           : Component to generate Table HTML to be copy pasted in Rich content area.
+****************************************************************************************************** 
+* Change History    AUTHOR            	DATE                            Description                          
+* CH00              Shubham Agrawal     15-Dec-2019                  	created the Component
+****************************************************************************************************** 
+-->
+<aura:component implements="lightning:availableForFlowScreens" access="global">
+    <aura:attribute name="rows" type="Integer" />
+    <aura:attribute name="columns" type="Integer" />
+    <aura:attribute name="columnHeaders" type="String[]" />
+    <aura:attribute name="tableHtml" type="String" />
+    
+    <aura:handler name="init" value="{! this }" action="{!c.init}"/>
+    <aura:registerEvent name="appEvent" type="c:EK_TableHTMLEvent"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    
+    <lightning:card class="padding_none header_none width_full">
+        <textarea rows="5" aura:id="table-html" readonly="true">{!v.tableHtml}</textarea>            
+        <aura:set attribute="footer">
+            <lightning:button label="Previous" class="slds-float_left" onclick="{!c.handleOnBack}"/>            
+            <lightning:button label="Close" variant="brand" class="slds-float_right" onclick="{!c.handleModalClose}"/>
+            <lightning:buttonIcon iconName="utility:copy" class="slds-float_right" variant="border-filled" 
+                                  onclick="{!c.handleOnCopy}" alternativeText="Copy" size="large"/>
+            <lightning:buttonIcon iconName="utility:dock_panel" class="slds-float_right" variant="border-filled" 
+                                  onclick="{!c.handleOnTableAdd}" alternativeText="Add Table bottom of content" size="large"/>
+        </aura:set>
+    </lightning:card>
+</aura:component>

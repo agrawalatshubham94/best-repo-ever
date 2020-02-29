@@ -1,0 +1,62 @@
+<!-- 
+****************************************************************************************************** 
+* Name               : EK_RichTextArea                                                                               
+* Author SFDC        : Emirates IT                                                 
+* Version            : 1.0                                                                                                                  
+* Function           : Component to add rich content along with data tables.
+****************************************************************************************************** 
+* Change History    AUTHOR            	DATE                            Description                          
+* CH00              Shubham Agrawal     15-Dec-2019                  	created the Component
+****************************************************************************************************** 
+-->
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName,forceCommunity:availableForAllPageTypes" 
+                access="global" controller="RichTextAreaController"
+                description="Custom rich text component having additional functionality to add Tables">
+    <aura:attribute name="mappedField" type="String" description="Field mapped to this Rich Text content" />
+    <aura:attribute name="contentOriginal" type="String" description="content fetched from backend during component rendering"/>
+    <aura:attribute name="errorMsg" type="String" description="error message from server"/>
+    <aura:attribute name="contentUpdated" type="String" description="content updated during session"/>
+    <aura:attribute name="isEdit" type="Boolean" default="false" description="to check component mode edit/read "/>
+    <aura:attribute name="title" type="String" default="Rich Text" description="Mapped field label"/>
+    
+    <aura:handler name="init" value="{! this }" action="{! c.init }" description="Called during component initialization"/>
+    <aura:handler event="c:EK_TableHTMLEvent" action="{!c.handleApplicationEvent}" description="Called from EK_TableConstruct to update the content"/>
+    
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    
+    <lightning:card title="{!v.title}" class="slds-p-around_x-small">
+        <aura:set attribute="actions">
+            <aura:if isTrue="{!v.isEdit}">
+                <lightning:buttonIcon iconName="utility:table" variant="bare" onclick="{!c.handleAddTable}" alternativeText="Add Table" size="medium"/>
+            </aura:if>
+            <lightning:buttonIcon iconName="utility:edit" variant="bare" onclick="{!c.handleOnEdit}" alternativeText="Edit" size="medium"/>
+        </aura:set>
+        <p class="slds-p-horizontal_small">
+            <aura:if isTrue="{!v.isEdit}">
+                <div onpaste="{!c.handleOnPaste}" aura:id="rich-content">
+                    <lightning:inputRichText value="{!v.contentUpdated}" placeholder="Type something interesting"
+                                             disabledCategories="FORMAT_FONT,REMOVE_FORMATTING" 
+                                             formats="['font', 'size', 'bold', 'italic', 'underline', 'strike', 'list', 'indent', 'align', 'clean', 'table', 'header']"
+                                             aura:id="rich-text">
+                        <!--lightning:insertImageButton/-->
+                    </lightning:inputRichText>
+                    <!--iframe src="{!'/apex/EK_RichTextArea'}" width="100%" height="300px;" frameBorder="0"/-->
+                </div>
+                <aura:set attribute="else">
+                    <lightning:formattedRichText value="{!v.contentOriginal}"/>
+                </aura:set>
+            </aura:if>
+        </p>        
+        <aura:set attribute="footer">
+            <aura:if isTrue="{!v.isEdit}">                
+                <div class="text-align_right">  
+                    <span class="slds-text-color_error slds-p-right_xx-small slds-float_left">
+                        {!v.errorMsg}
+                    </span>
+                    <lightning:button label="Cancel" onclick="{!c.handleOnCancel}"/>
+                    <lightning:button label="Save" variant="brand" onclick="{!c.handleOnSave}"/>                        
+                </div>
+            </aura:if>
+        </aura:set>        
+    </lightning:card>    
+</aura:component>
