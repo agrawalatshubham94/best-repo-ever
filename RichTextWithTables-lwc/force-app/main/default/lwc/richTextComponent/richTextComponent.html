@@ -1,0 +1,56 @@
+<template>    
+    <template if:true={objectInfo}>
+        <template if:true={isEditMode}>
+            <lightning-card title={fieldLabel}>
+                <div slot="actions">
+                    <lightning-button-icon icon-name="utility:info"  alternative-text="Help" title="Help" size="large" variant="bare" onclick={handleInfoPop}></lightning-button-icon>
+                </div>
+                <div class="slds-p-left_medium slds-p-right_medium">                
+                    <lightning-input-rich-text value={updatedContent} onblur={handleContentChange} 
+                    placeholder='Type something here...' formats={formats} disabled={isDisabled}>
+                    </lightning-input-rich-text>                                 
+                </div>
+                <div slot="footer" class="card-footer">
+                    <lightning-button-group>
+                        <lightning-button label="Save" variant="Brand" onclick={handleOnSave} disabled={isDisabled}></lightning-button>&nbsp;
+                        <lightning-button label="Cancel" variant="Neutral" onclick={handleOnCancel} ></lightning-button>                    
+                    </lightning-button-group>
+                </div>
+            </lightning-card>
+        </template>
+        <template if:false={isEditMode}>
+            <lightning-card title={fieldLabel}>
+                <div slot="actions">
+                    <lightning-button-icon icon-name="utility:edit"  alternative-text="Settings" variant="bare" title="Settings" onclick={handleEdit}></lightning-button-icon>
+                </div>
+                <div class="slds-p-left_medium slds-p-right_medium">
+                    <lightning-formatted-rich-text value={originalContent} ></lightning-formatted-rich-text>
+                </div>
+            </lightning-card>
+        </template>  
+    </template>
+    <template if:false={objectInfo}>
+        Error. Please Contact your Admin.
+    </template>
+
+    <!--Show Information modal-->
+    <c-modal-box modal-heading="Help" show-modal={showModal} onclosemodalbox={handleCloseModal}>
+        <div slot="body">
+            <p><b>Rich text editor enables you to add, edit, format, and delete rich content. Easily create rich content for the portal with different toolbar configurations.</b></p>
+            <br/>
+            <div class="slds-text-longform">
+                <p>Points to be considered while working with Tables:</p>
+                <ul>
+                    <li>Editor does not have any dedicated toolbar option to create table but you can copy paste the table inside the editor.</li>
+                    <li>First row of the table is considered as Table Header to support the responsive behaviour on the portal.</li>                  
+                    <li>Editor does not support merged column/rows layouts in pasted content. Please make sure to simplify the table content 
+                        before pasting in the editor.</li>
+                    <li>Editor does not support editing the cell content after pasting the table. In case you want to edit the content, 
+                        please replace the old table with the updated one. Change the content in the Excel and once the changes are done, paste the same in the editor.
+                    </li>
+                    <li>Editor automatically removes unwanted styles from the pasted content to support Emirates branding on the agent portal</li>
+                </ul>            
+            </div>            
+        </div>
+    </c-modal-box>
+</template>
